@@ -25,3 +25,9 @@ export class UnauthorizedError extends ApiError {
     super(401, code, message, details);
   }
 }
+
+export class NotFoundError extends ApiError {
+  constructor(message, details = []) {
+    super(404, 'NOT_FOUND', message, details);
+  }
+}

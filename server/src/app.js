@@ -7,6 +7,7 @@ import { errorHandler } from './middleware/errorHandler.js';
 import { notFoundHandler } from './middleware/notFound.js';
 import authRouter from './routes/auth.routes.js';
 import healthRouter from './routes/health.routes.js';
+import sessionRouter from './routes/session.routes.js';
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.use('/api/health', healthRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/sessions', sessionRouter);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
