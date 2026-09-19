@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 
 import { getApiErrorMessage } from '../api/client.js';
+import HypothesisSection from '../components/HypothesisSection.jsx';
 import { useDeleteSession, useSession } from '../hooks/useSessions.js';
 import SessionSkeleton from '../components/SessionSkeleton.jsx';
 
@@ -105,6 +106,7 @@ export default function SessionDetailsPage() {
         <DetailBlock className="code-block" title="Solution" value={session.solution} />
         <DetailBlock title="Lesson learned" value={session.lessonLearned} />
       </div>
+      <HypothesisSection sessionId={id} />
       {showDeleteDialog && (
         <div className="dialog-backdrop" role="presentation">
           <div
