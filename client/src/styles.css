@@ -712,6 +712,14 @@ a {
   color: #70788e;
   flex: 1;
   gap: 0.55rem;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.search-box:focus-within {
+  border-color: var(--accent-strong);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.13);
 }
 
 .search-box input,
@@ -722,6 +730,17 @@ a {
   min-width: 0;
   outline: 0;
   width: 100%;
+}
+
+.search-box kbd {
+  background: #1a1f2d;
+  border: 1px solid #30374b;
+  border-radius: 0.3rem;
+  color: #8991a4;
+  flex-shrink: 0;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.62rem;
+  padding: 0.2rem 0.35rem;
 }
 
 .session-toolbar select,

@@ -50,7 +50,13 @@ export default function SessionDetailsPage() {
   return (
     <section className="page-container detail-page">
       {location.state?.message && <p className="success-message">{location.state.message}</p>}
-      <Link className="back-link" to="/sessions">
+      <Link
+        className="back-link"
+        to={{
+          pathname: '/sessions',
+          search: location.state?.returnSearch ? `?${location.state.returnSearch}` : '',
+        }}
+      >
         <ArrowLeft size={16} /> All sessions
       </Link>
       <div className="detail-heading">

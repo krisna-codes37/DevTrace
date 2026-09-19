@@ -32,6 +32,10 @@ export async function listSessions(request, response) {
       { description: expression },
       { errorMessage: expression },
       { projectName: expression },
+      { technology: expression },
+      { tags: expression },
+      { rootCause: expression },
+      { solution: expression },
     ];
   }
 

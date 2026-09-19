@@ -6,7 +6,7 @@ import {
   Search,
   SlidersHorizontal,
 } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 
 import { getApiErrorMessage } from '../api/client.js';
@@ -41,9 +41,43 @@ export default function SessionsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [filtersOpen, setFiltersOpen] = useState(false);
   const query = readQuery(searchParams);
+  const [searchInput, setSearchInput] = useState(query.search);
+  const searchRef = useRef(null);
   const { data, error, isLoading, isFetching } = useSessions(query);
   const sessions = data?.data ?? [];
   const pagination = data?.pagination ?? { page: 1, limit: 10, total: 0, totalPages: 0 };
+
+  useEffect(() => {
+    setSearchInput(query.search);
+  }, [query.search]);
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      if (searchInput !== query.search) {
+        setSearchParams((current) => {
+          const next = new URLSearchParams(current);
+          if (searchInput) next.set('search', searchInput);
+          else next.delete('search');
+          next.set('page', '1');
+          return next;
+        });
+      }
+    }, 350);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [searchInput, query.search, setSearchParams]);
+
+  useEffect(() => {
+    function focusSearch(event) {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+        event.preventDefault();
+        searchRef.current?.focus();
+      }
+    }
+
+    window.addEventListener('keydown', focusSearch);
+    return () => window.removeEventListener('keydown', focusSearch);
+  }, []);
 
   function updateQuery(key, value) {
     const next = new URLSearchParams(searchParams);
@@ -72,10 +106,12 @@ export default function SessionsPage() {
           <Search size={17} aria-hidden="true" />
           <span className="sr-only">Search sessions</span>
           <input
-            value={query.search}
-            onChange={(event) => updateQuery('search', event.target.value)}
-            placeholder="Search title, errors, or project..."
+            ref={searchRef}
+            value={searchInput}
+            onChange={(event) => setSearchInput(event.target.value)}
+            placeholder="Search title, description, tags, root cause..."
           />
+          <kbd>Ctrl/Cmd K</kbd>
         </label>
         <button
           className="secondary-button filter-toggle"
@@ -93,8 +129,7 @@ export default function SessionsPage() {
           <option value="-createdAt">Newest first</option>
           <option value="createdAt">Oldest first</option>
           <option value="-updatedAt">Recently updated</option>
-          <option value="title">Title A-Z</option>
-          <option value="-title">Title Z-A</option>
+          <option value="updatedAt">Least recently updated</option>
         </select>
       </div>
 
@@ -143,7 +178,11 @@ export default function SessionsPage() {
         <>
           <div className="session-list" aria-live="polite">
             {sessions.map((session) => (
-              <SessionRow key={session._id} session={session} />
+              <SessionRow
+                key={session._id}
+                session={session}
+                returnSearch={searchParams.toString()}
+              />
             ))}
           </div>
           <div className="pagination-bar">
@@ -188,9 +227,9 @@ function readQuery(params) {
   );
 }
 
-function SessionRow({ session }) {
+function SessionRow({ session, returnSearch }) {
   return (
-    <Link className="session-row" to={`/sessions/${session._id}`}>
+    <Link className="session-row" to={`/sessions/${session._id}`} state={{ returnSearch }}>
       <div className="session-row-main">
         <div className="session-row-title">
           <span className={`status-dot status-${session.status?.toLowerCase()}`} />
