@@ -7,6 +7,7 @@ import {
   updateHypothesis,
 } from '../controllers/hypothesis.controller.js';
 import { requireAuth } from '../middleware/auth.js';
+import { requireDatabase } from '../middleware/database.js';
 import { validate } from '../middleware/validate.js';
 import {
   createHypothesisSchema,
@@ -16,7 +17,7 @@ import {
 } from '../validators/hypothesis.validator.js';
 
 const sessionHypothesisRouter = Router({ mergeParams: true });
-sessionHypothesisRouter.use(requireAuth);
+sessionHypothesisRouter.use(requireDatabase, requireAuth);
 sessionHypothesisRouter.get('/', validate(sessionHypothesisParamsSchema, 'params'), listHypotheses);
 sessionHypothesisRouter.post(
   '/',
@@ -26,7 +27,7 @@ sessionHypothesisRouter.post(
 );
 
 const hypothesisRouter = Router();
-hypothesisRouter.use(requireAuth);
+hypothesisRouter.use(requireDatabase, requireAuth);
 hypothesisRouter.patch(
   '/:id',
   validate(hypothesisParamsSchema, 'params'),

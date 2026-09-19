@@ -37,18 +37,26 @@ export default function ExperimentTimeline({ hypothesisId }) {
   const deleteMutation = useDeleteExperiment();
 
   async function handleSubmit(payload) {
-    if (editingExperiment) {
-      await updateMutation.mutateAsync({ id: editingExperiment._id, payload });
-    } else {
-      await createMutation.mutateAsync({ hypothesisId, payload });
+    try {
+      if (editingExperiment) {
+        await updateMutation.mutateAsync({ id: editingExperiment._id, payload });
+      } else {
+        await createMutation.mutateAsync({ hypothesisId, payload });
+      }
+      setShowForm(false);
+      setEditingExperiment(null);
+    } catch {
+      // The mutation error is rendered below without creating an unhandled rejection.
     }
-    setShowForm(false);
-    setEditingExperiment(null);
   }
 
   async function handleDelete(id) {
     if (window.confirm('Delete this experiment?')) {
-      await deleteMutation.mutateAsync({ id, hypothesisId });
+      try {
+        await deleteMutation.mutateAsync({ id, hypothesisId });
+      } catch {
+        // The mutation error is rendered below without creating an unhandled rejection.
+      }
     }
   }
 

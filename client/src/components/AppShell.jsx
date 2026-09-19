@@ -1,5 +1,5 @@
 import { Activity, LogOut } from 'lucide-react';
-import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../context/useAuth.js';
 
@@ -22,6 +22,14 @@ export default function AppShell() {
           </span>
           <span>DevTrace</span>
         </Link>
+        <nav className="product-nav" aria-label="Primary navigation">
+          <NavLink className={({ isActive }) => (isActive ? 'active' : '')} to="/dashboard">
+            Dashboard
+          </NavLink>
+          <NavLink className={({ isActive }) => (isActive ? 'active' : '')} to="/sessions">
+            Sessions
+          </NavLink>
+        </nav>
         <div className="user-controls">
           <span className="user-chip">{user?.name}</span>
           <button className="icon-button" type="button" onClick={handleLogout} title="Log out">

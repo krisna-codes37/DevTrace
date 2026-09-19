@@ -46,8 +46,12 @@ export default function SessionDetailsPage() {
     );
 
   async function handleDelete() {
-    await deleteMutation.mutateAsync(id);
-    navigate('/sessions', { replace: true, state: { message: 'Session deleted.' } });
+    try {
+      await deleteMutation.mutateAsync(id);
+      navigate('/sessions', { replace: true, state: { message: 'Session deleted.' } });
+    } catch {
+      // The mutation error is rendered in the confirmation dialog.
+    }
   }
 
   return (
@@ -128,6 +132,11 @@ export default function SessionDetailsPage() {
             <p className="eyebrow">Permanent action</p>
             <h2 id="delete-title">Delete this session?</h2>
             <p>This debugging record and its context will be removed permanently.</p>
+            {deleteMutation.error && (
+              <p className="form-error form-error-summary">
+                {getApiErrorMessage(deleteMutation.error)}
+              </p>
+            )}
             <div className="dialog-actions">
               <button
                 className="secondary-button"

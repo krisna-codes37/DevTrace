@@ -49,14 +49,19 @@ export async function createHypothesis(request, response) {
 }
 
 export async function updateHypothesis(request, response) {
-  await findOwnedHypothesis(request.user._id, request.params.id);
+  const ownedHypothesis = await findOwnedHypothesis(request.user._id, request.params.id);
   const updates = { ...request.body };
   delete updates.sessionId;
 
-  const hypothesis = await Hypothesis.findOneAndUpdate({ _id: request.params.id }, updates, {
-    new: true,
-    runValidators: true,
-  });
+  const hypothesis = await Hypothesis.findOneAndUpdate(
+    { _id: request.params.id, sessionId: ownedHypothesis.sessionId },
+    updates,
+    { new: true, runValidators: true },
+  );
+
+  if (!hypothesis) {
+    throw new NotFoundError('Hypothesis not found');
+  }
 
   return response.json({
     success: true,
@@ -65,8 +70,15 @@ export async function updateHypothesis(request, response) {
 }
 
 export async function deleteHypothesis(request, response) {
-  await findOwnedHypothesis(request.user._id, request.params.id);
-  await Hypothesis.deleteOne({ _id: request.params.id });
+  const ownedHypothesis = await findOwnedHypothesis(request.user._id, request.params.id);
+  const result = await Hypothesis.deleteOne({
+    _id: request.params.id,
+    sessionId: ownedHypothesis.sessionId,
+  });
+
+  if (result.deletedCount !== 1) {
+    throw new NotFoundError('Hypothesis not found');
+  }
 
   return response.json({
     success: true,

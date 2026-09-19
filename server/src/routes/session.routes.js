@@ -8,6 +8,7 @@ import {
   updateSession,
 } from '../controllers/session.controller.js';
 import { requireAuth } from '../middleware/auth.js';
+import { requireDatabase } from '../middleware/database.js';
 import { validate } from '../middleware/validate.js';
 import {
   createSessionSchema,
@@ -18,7 +19,7 @@ import {
 
 const sessionRouter = Router();
 
-sessionRouter.use(requireAuth);
+sessionRouter.use(requireDatabase, requireAuth);
 sessionRouter.get('/', validate(listSessionsQuerySchema, 'query'), listSessions);
 sessionRouter.post('/', validate(createSessionSchema), createSession);
 sessionRouter.get('/:id', validate(sessionIdSchema, 'params'), getSession);

@@ -16,8 +16,9 @@ export async function connectDatabase() {
     });
     console.log('Connected to MongoDB');
   } catch (error) {
+    console.error('[database] MongoDB connection failed', error);
     throw new ConfigurationError(
-      `MongoDB connection failed. Check MONGODB_URI and confirm MongoDB is reachable. ${error.message}`,
+      'MongoDB connection failed. Check MONGODB_URI and confirm MongoDB is reachable.',
     );
   }
 }

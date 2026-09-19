@@ -7,6 +7,7 @@ import {
   updateExperiment,
 } from '../controllers/experiment.controller.js';
 import { requireAuth } from '../middleware/auth.js';
+import { requireDatabase } from '../middleware/database.js';
 import { validate } from '../middleware/validate.js';
 import {
   createExperimentSchema,
@@ -16,7 +17,7 @@ import {
 } from '../validators/experiment.validator.js';
 
 const hypothesisExperimentRouter = Router({ mergeParams: true });
-hypothesisExperimentRouter.use(requireAuth);
+hypothesisExperimentRouter.use(requireDatabase, requireAuth);
 hypothesisExperimentRouter.get(
   '/',
   validate(experimentParentParamsSchema, 'params'),
@@ -30,7 +31,7 @@ hypothesisExperimentRouter.post(
 );
 
 const experimentRouter = Router();
-experimentRouter.use(requireAuth);
+experimentRouter.use(requireDatabase, requireAuth);
 experimentRouter.patch(
   '/:id',
   validate(experimentParamsSchema, 'params'),

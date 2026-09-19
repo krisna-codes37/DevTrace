@@ -38,18 +38,26 @@ export default function HypothesisSection({ sessionId }) {
   const deleteMutation = useDeleteHypothesis();
 
   async function handleSubmit(values) {
-    if (editingHypothesis) {
-      await updateMutation.mutateAsync({ id: editingHypothesis._id, sessionId, payload: values });
-    } else {
-      await createMutation.mutateAsync({ sessionId, payload: values });
+    try {
+      if (editingHypothesis) {
+        await updateMutation.mutateAsync({ id: editingHypothesis._id, sessionId, payload: values });
+      } else {
+        await createMutation.mutateAsync({ sessionId, payload: values });
+      }
+      setShowForm(false);
+      setEditingHypothesis(null);
+    } catch {
+      // The mutation error is rendered below without creating an unhandled rejection.
     }
-    setShowForm(false);
-    setEditingHypothesis(null);
   }
 
   async function handleDelete(id) {
     if (window.confirm('Delete this hypothesis?')) {
-      await deleteMutation.mutateAsync({ id, sessionId });
+      try {
+        await deleteMutation.mutateAsync({ id, sessionId });
+      } catch {
+        // The mutation error is rendered below without creating an unhandled rejection.
+      }
     }
   }
 

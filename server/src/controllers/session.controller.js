@@ -1,4 +1,6 @@
 import DebugSession from '../models/DebugSession.js';
+import Experiment from '../models/Experiment.js';
+import Hypothesis from '../models/Hypothesis.js';
 import { NotFoundError } from '../utils/apiError.js';
 
 const sortFields = {
@@ -125,6 +127,11 @@ export async function deleteSession(request, response) {
   if (!session) {
     throw new NotFoundError('Debug session not found');
   }
+
+  await Promise.all([
+    Experiment.deleteMany({ sessionId: session._id }),
+    Hypothesis.deleteMany({ sessionId: session._id }),
+  ]);
 
   return response.json({
     success: true,

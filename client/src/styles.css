@@ -37,6 +37,15 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -300,6 +309,30 @@ a {
   display: flex;
   justify-content: space-between;
   padding: 1.15rem clamp(1.25rem, 5vw, 4rem);
+}
+
+.product-nav {
+  align-items: center;
+  display: flex;
+  gap: 0.25rem;
+  margin-left: auto;
+  margin-right: 1.5rem;
+}
+
+.product-nav a {
+  border-radius: 0.45rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+  padding: 0.45rem 0.7rem;
+  transition:
+    background 160ms ease,
+    color 160ms ease;
+}
+
+.product-nav a:hover,
+.product-nav a.active {
+  background: rgba(167, 139, 250, 0.1);
+  color: #f6f7fb;
 }
 
 .user-controls {
@@ -1865,6 +1898,19 @@ a {
     display: none;
   }
 
+  .product-header {
+    padding: 0.9rem 1rem;
+  }
+
+  .product-nav {
+    margin-right: 0.25rem;
+  }
+
+  .product-nav a {
+    font-size: 0.72rem;
+    padding: 0.4rem 0.45rem;
+  }
+
   .hypothesis-heading,
   .hypothesis-form-controls {
     align-items: stretch;
@@ -1899,5 +1945,55 @@ a {
   }
   .technology-chart {
     grid-template-columns: minmax(12rem, 0.9fr) minmax(8rem, 1fr);
+  }
+
+  .page-heading-row,
+  .detail-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .detail-heading .detail-actions {
+    width: 100%;
+  }
+
+  .detail-heading .detail-actions > * {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .session-toolbar {
+    flex-wrap: wrap;
+    margin-top: 1.75rem;
+  }
+
+  .search-box {
+    flex-basis: 100%;
+  }
+
+  .session-toolbar select {
+    flex: 1;
+  }
+
+  .filter-toggle {
+    display: inline-flex;
+  }
+
+  .session-filters {
+    display: none;
+    flex-direction: column;
+  }
+
+  .session-filters.is-open {
+    display: flex;
+  }
+
+  .session-form-grid,
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .session-form-grid {
+    gap: 1.5rem;
   }
 }
