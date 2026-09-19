@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 import { getApiErrorMessage } from '../api/client.js';
+import ExperimentTimeline from './ExperimentTimeline.jsx';
 import {
   useCreateHypothesis,
   useDeleteHypothesis,
@@ -240,8 +241,8 @@ function HypothesisCard({ hypothesis, onDelete, onEdit }) {
       </div>
       <div className="hypothesis-card-footer">
         <span>Created {formatDate(hypothesis.createdAt)}</span>
-        <span className="experiment-placeholder">Experiments will appear here later.</span>
       </div>
+      <ExperimentTimeline hypothesisId={hypothesis._id} />
     </article>
   );
 }

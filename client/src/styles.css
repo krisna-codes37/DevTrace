@@ -738,9 +738,178 @@ a {
   gap: 1rem;
   margin-top: 1rem;
 }
-.experiment-placeholder {
+
+.experiment-section {
+  border-top: 1px solid rgba(40, 45, 61, 0.75);
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+}
+
+.experiment-section-heading,
+.experiment-form-header,
+.experiment-form-actions,
+.experiment-item-heading {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.experiment-section-title,
+.experiment-form-header strong {
+  color: var(--soft);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.experiment-form {
+  background: #0d1018;
+  border: 1px solid var(--line);
+  border-radius: 0.65rem;
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 0.9rem;
+  padding: 0.9rem;
+}
+
+.experiment-form textarea {
+  background: #12151f;
+  border: 1px solid var(--line);
+  border-radius: 0.45rem;
+  color: #f6f7fb;
+  line-height: 1.45;
+  padding: 0.65rem;
+  resize: vertical;
+  width: 100%;
+}
+
+.experiment-form textarea:focus {
+  border-color: var(--accent-strong);
+  outline: 0;
+}
+
+.experiment-form-actions {
+  border-top: 1px solid var(--line);
+  padding-top: 0.8rem;
+}
+
+.experiment-empty {
   color: #77718f;
+  font-size: 0.78rem;
   font-style: italic;
+  margin: 0.8rem 0 0;
+}
+
+.experiment-timeline {
+  border-left: 1px solid rgba(167, 139, 250, 0.35);
+  margin: 1rem 0 0 0.35rem;
+  padding-left: 1rem;
+}
+
+.experiment-item {
+  position: relative;
+}
+
+.experiment-item + .experiment-item {
+  margin-top: 1.2rem;
+}
+
+.experiment-node {
+  background: var(--accent-strong);
+  border: 3px solid #12151f;
+  border-radius: 50%;
+  height: 0.75rem;
+  left: -1.4rem;
+  position: absolute;
+  top: 0.35rem;
+  width: 0.75rem;
+}
+
+.experiment-item-content {
+  min-width: 0;
+}
+
+.experiment-item-heading {
+  color: #687187;
+  font-size: 0.68rem;
+}
+
+.experiment-item-heading > div {
+  display: flex;
+}
+
+.experiment-item h4 {
+  color: #e7e9f2;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  margin: 0.45rem 0 0.7rem;
+}
+
+.experiment-observations {
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.experiment-observation {
+  background: rgba(13, 16, 24, 0.8);
+  border-radius: 0.45rem;
+  display: flex;
+  gap: 0.5rem;
+  min-width: 0;
+  padding: 0.65rem;
+}
+
+.observation-icon {
+  align-items: center;
+  background: rgba(167, 139, 250, 0.12);
+  border-radius: 50%;
+  color: var(--accent);
+  display: inline-flex;
+  flex-shrink: 0;
+  height: 1.25rem;
+  justify-content: center;
+  width: 1.25rem;
+}
+
+.observation-label {
+  color: #8991a4;
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.experiment-observation p {
+  color: #c1c6d3;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  margin: 0.35rem 0 0;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.experiment-skeleton {
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.experiment-skeleton span {
+  background: #1a1f2d;
+  border-radius: 0.25rem;
+  height: 0.6rem;
+  width: 70%;
+}
+
+.experiment-skeleton span:nth-child(2) {
+  width: 45%;
+}
+.experiment-skeleton span:nth-child(3) {
+  width: 60%;
 }
 .hypothesis-empty {
   align-items: center;
@@ -1278,5 +1447,9 @@ a {
   .hypothesis-card-footer {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .experiment-observations {
+    grid-template-columns: 1fr;
   }
 }
