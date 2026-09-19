@@ -4,7 +4,9 @@ import { useState } from 'react';
 
 import { getApiErrorMessage } from '../api/client.js';
 import HypothesisSection from '../components/HypothesisSection.jsx';
+import Timeline from '../components/Timeline.jsx';
 import { useDeleteSession, useSession } from '../hooks/useSessions.js';
+import { useJourneyTimeline } from '../hooks/useJourneyTimeline.js';
 import SessionSkeleton from '../components/SessionSkeleton.jsx';
 
 const statusLabels = {
@@ -22,6 +24,7 @@ export default function SessionDetailsPage() {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const { data: session, isLoading, error } = useSession(id);
   const deleteMutation = useDeleteSession();
+  const journey = useJourneyTimeline(session);
 
   if (isLoading)
     return (
@@ -112,6 +115,7 @@ export default function SessionDetailsPage() {
         <DetailBlock className="code-block" title="Solution" value={session.solution} />
         <DetailBlock title="Lesson learned" value={session.lessonLearned} />
       </div>
+      <Timeline events={journey.events} isLoading={journey.isLoading} />
       <HypothesisSection sessionId={id} />
       {showDeleteDialog && (
         <div className="dialog-backdrop" role="presentation">
