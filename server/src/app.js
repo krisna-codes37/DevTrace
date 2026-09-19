@@ -6,6 +6,7 @@ import { env } from './config/env.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { notFoundHandler } from './middleware/notFound.js';
 import authRouter from './routes/auth.routes.js';
+import dashboardRouter from './routes/dashboard.routes.js';
 import healthRouter from './routes/health.routes.js';
 import { hypothesisRouter, sessionHypothesisRouter } from './routes/hypothesis.routes.js';
 import { experimentRouter, hypothesisExperimentRouter } from './routes/experiment.routes.js';
@@ -19,6 +20,7 @@ app.use(express.json());
 
 app.use('/api/health', healthRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/dashboard', dashboardRouter);
 app.use('/api/sessions/:sessionId/hypotheses', sessionHypothesisRouter);
 app.use('/api/hypotheses/:hypothesisId/experiments', hypothesisExperimentRouter);
 app.use('/api/hypotheses', hypothesisRouter);

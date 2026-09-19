@@ -6,6 +6,7 @@ import { ProtectedRoutes, PublicRoutes } from './components/RouteGuards.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import PlaceholderPage from './pages/PlaceholderPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
+import DashboardPage from './pages/DashboardPage.jsx';
 import SessionDetailsPage from './pages/SessionDetailsPage.jsx';
 import SessionFormPage from './pages/SessionFormPage.jsx';
 import SessionsPage from './pages/SessionsPage.jsx';
@@ -22,7 +23,7 @@ function App() {
         </Route>
         <Route element={<ProtectedRoutes />}>
           <Route element={<AppShell />}>
-            <Route path="/dashboard" element={<PlaceholderPage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/sessions" element={<SessionsPage />} />
             <Route path="/sessions/new" element={<SessionFormPage mode="create" />} />
             <Route path="/sessions/:id" element={<SessionDetailsPage />} />
