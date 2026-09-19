@@ -2,17 +2,20 @@ import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 
+import { env } from './config/env.js';
+import { errorHandler } from './middleware/errorHandler.js';
+import { notFoundHandler } from './middleware/notFound.js';
+import healthRouter from './routes/health.routes.js';
+
 const app = express();
 
 app.use(helmet());
-app.use(cors({ origin: process.env.CLIENT_ORIGIN ?? 'http://localhost:5173' }));
+app.use(cors({ origin: env.CLIENT_ORIGIN }));
 app.use(express.json());
 
-app.get('/api/health', (_request, response) => {
-  response.json({
-    success: true,
-    message: 'DevTrace API is running',
-  });
-});
+app.use('/api/health', healthRouter);
+
+app.use(notFoundHandler);
+app.use(errorHandler);
 
 export default app;

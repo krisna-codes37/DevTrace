@@ -1,7 +1,17 @@
 import app from './app.js';
+import { connectDatabase } from './config/database.js';
+import { env } from './config/env.js';
 
-const port = Number.parseInt(process.env.PORT ?? '5000', 10);
+async function startServer() {
+  try {
+    await connectDatabase();
+  } catch (error) {
+    console.error(`[database] ${error.message}`);
+  }
 
-app.listen(port, () => {
-  console.log(`DevTrace API listening on port ${port}`);
-});
+  app.listen(env.PORT, () => {
+    console.log(`DevTrace API listening on port ${env.PORT}`);
+  });
+}
+
+startServer();

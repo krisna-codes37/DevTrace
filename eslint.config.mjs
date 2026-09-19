@@ -27,6 +27,7 @@ export default [
       'react-refresh': reactRefresh,
     },
     rules: {
+      'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       'react/jsx-uses-vars': 'error',
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
@@ -38,6 +39,9 @@ export default [
       ecmaVersion: 'latest',
       sourceType: 'module',
       globals: globals.node,
+    },
+    rules: {
+      'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
   },
 ];

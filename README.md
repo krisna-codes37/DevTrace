@@ -20,13 +20,13 @@ DevTrace is designed to prevent that.
 
 It gives developers a structured place to record:
 
-* What went wrong
-* What they initially believed was causing the problem
-* What experiments they performed
-* What evidence they collected
-* What the actual root cause was
-* How they fixed it
-* What they learned from the incident
+- What went wrong
+- What they initially believed was causing the problem
+- What experiments they performed
+- What evidence they collected
+- What the actual root cause was
+- How they fixed it
+- What they learned from the incident
 
 Over time, DevTrace becomes a **personal debugging knowledge base**.
 
@@ -40,12 +40,12 @@ Create a dedicated debugging session for every problem.
 
 Each session can contain:
 
-* Problem description
-* Environment and project information
-* Severity
-* Status
-* Tags
-* Creation and update timestamps
+- Problem description
+- Environment and project information
+- Severity
+- Status
+- Tags
+- Creation and update timestamps
 
 ---
 
@@ -73,12 +73,12 @@ Test your hypotheses through structured experiments.
 
 Each experiment can record:
 
-* What was tested
-* Why it was tested
-* Expected result
-* Actual result
-* Status
-* Related hypothesis
+- What was tested
+- Why it was tested
+- Expected result
+- Actual result
+- Status
+- Related hypothesis
 
 Example:
 
@@ -104,14 +104,14 @@ Attach observations and technical evidence to your investigation.
 
 Examples include:
 
-* Error messages
-* Logs
-* Stack traces
-* API responses
-* Console output
-* Screenshots
-* Performance observations
-* Links to relevant resources
+- Error messages
+- Logs
+- Stack traces
+- API responses
+- Console output
+- Screenshots
+- Performance observations
+- Links to relevant resources
 
 Evidence helps connect experiments to conclusions.
 
@@ -147,10 +147,10 @@ Every debugging session ends with the most important part:
 
 Capture:
 
-* What you learned
-* What you would do differently
-* What could prevent the issue in the future
-* Any best practices discovered during debugging
+- What you learned
+- What you would do differently
+- What could prevent the issue in the future
+- Any best practices discovered during debugging
 
 ---
 
@@ -160,13 +160,13 @@ DevTrace will provide a dashboard to help developers understand their debugging 
 
 The dashboard will provide insights such as:
 
-* Total debugging sessions
-* Open vs resolved problems
-* Recent debugging activity
-* Most common problem categories
-* Frequently used technologies
-* Debugging trends
-* Resolution statistics
+- Total debugging sessions
+- Open vs resolved problems
+- Recent debugging activity
+- Most common problem categories
+- Frequently used technologies
+- Debugging trends
+- Resolution statistics
 
 The goal is not just to store bugs, but to understand **how you debug**.
 
@@ -241,37 +241,37 @@ DevTrace follows a full-stack MERN architecture.
 
 ## Frontend
 
-* React
-* Vite
-* React Router
-* Axios
-* TanStack Query
-* React Hook Form
-* Zod
-* Tailwind CSS
-* Lucide React
-* Recharts
+- React
+- Vite
+- React Router
+- Axios
+- TanStack Query
+- React Hook Form
+- Zod
+- Tailwind CSS
+- Lucide React
+- Recharts
 
 ## Backend
 
-* Node.js
-* Express.js
-* MongoDB
-* Mongoose
-* JWT Authentication
-* bcryptjs
-* Zod
-* Helmet
-* CORS
-* express-rate-limit
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT Authentication
+- bcryptjs
+- Zod
+- Helmet
+- CORS
+- express-rate-limit
 
 ## Development Tools
 
-* JavaScript
-* npm Workspaces
-* Git
-* GitHub
-* VS Code
+- JavaScript
+- npm Workspaces
+- Git
+- GitHub
+- VS Code
 
 ---
 
@@ -323,11 +323,11 @@ DevTrace will use JWT-based authentication.
 
 Users will be able to:
 
-* Register
-* Login
-* Logout
-* Access protected resources
-* Maintain their own debugging sessions
+- Register
+- Login
+- Logout
+- Access protected resources
+- Maintain their own debugging sessions
 
 Passwords will never be stored as plain text.
 
@@ -369,12 +369,12 @@ DevTrace is designed specifically for developers.
 
 The interface should be:
 
-* Dark
-* Minimal
-* Modern
-* Fast
-* Responsive
-* Information-dense without feeling cluttered
+- Dark
+- Minimal
+- Modern
+- Fast
+- Responsive
+- Information-dense without feeling cluttered
 
 The UI should prioritize **developer workflows and technical information** rather than looking like a generic CRUD dashboard.
 
@@ -404,23 +404,23 @@ DevTrace is currently under active development.
 
 ### Completed
 
-* [x] Initial monorepo structure
-* [x] Project architecture documentation
-* [x] Initial database planning
-* [x] API contract planning
+- [x] Initial monorepo structure
+- [x] Project architecture documentation
+- [x] Initial database planning
+- [x] API contract planning
 
 ### In Progress
 
-* [ ] React frontend
-* [ ] Express backend
-* [ ] MongoDB integration
-* [ ] Authentication
-* [ ] Debugging session CRUD
-* [ ] Hypothesis management
-* [ ] Experiment management
-* [ ] Evidence management
-* [ ] Dashboard
-* [ ] Responsive UI
+- [ ] React frontend
+- [ ] Express backend
+- [ ] MongoDB integration
+- [ ] Authentication
+- [ ] Debugging session CRUD
+- [ ] Hypothesis management
+- [ ] Experiment management
+- [ ] Evidence management
+- [ ] Dashboard
+- [ ] Responsive UI
 
 ---
 
@@ -428,47 +428,47 @@ DevTrace is currently under active development.
 
 ### Phase 1 — Foundation
 
-* Project setup
-* Frontend architecture
-* Backend architecture
-* MongoDB connection
-* Environment configuration
+- Project setup
+- Frontend architecture
+- Backend architecture
+- MongoDB connection
+- Environment configuration
 
 ### Phase 2 — Authentication
 
-* User registration
-* Login
-* JWT authentication
-* Protected routes
-* Logout
+- User registration
+- Login
+- JWT authentication
+- Protected routes
+- Logout
 
 ### Phase 3 — Debugging Workflow
 
-* Create debugging session
-* Add hypotheses
-* Add experiments
-* Add evidence
-* Record root cause
-* Record solution
-* Record lessons learned
+- Create debugging session
+- Add hypotheses
+- Add experiments
+- Add evidence
+- Record root cause
+- Record solution
+- Record lessons learned
 
 ### Phase 4 — Dashboard
 
-* Debugging statistics
-* Activity timeline
-* Session status
-* Technology breakdown
-* Debugging trends
+- Debugging statistics
+- Activity timeline
+- Session status
+- Technology breakdown
+- Debugging trends
 
 ### Phase 5 — UX & Polish
 
-* Responsive design
-* Loading states
-* Error states
-* Form validation
-* Empty states
-* Accessibility improvements
-* Performance optimization
+- Responsive design
+- Loading states
+- Error states
+- Form validation
+- Empty states
+- Accessibility improvements
+- Performance optimization
 
 ---
 
@@ -476,11 +476,11 @@ DevTrace is currently under active development.
 
 The initial version intentionally follows a few constraints:
 
-* No AI functionality in the initial release.
-* Use a real backend and MongoDB database.
-* No fake/mock API data in the production workflow.
-* Keep the product focused on debugging rather than becoming a generic project-management tool.
-* Prioritize a clean developer experience over unnecessary features.
+- No AI functionality in the initial release.
+- Use a real backend and MongoDB database.
+- No fake/mock API data in the production workflow.
+- Keep the product focused on debugging rather than becoming a generic project-management tool.
+- Prioritize a clean developer experience over unnecessary features.
 
 ---
 
@@ -490,9 +490,9 @@ The initial version intentionally follows a few constraints:
 
 Make sure you have:
 
-* Node.js 20+
-* npm 10+
-* MongoDB
+- Node.js 20+
+- npm 10+
+- MongoDB
 
 Check your versions:
 
