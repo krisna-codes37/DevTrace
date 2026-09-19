@@ -1,0 +1,33 @@
+{
+  "name": "devtrace",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Developer debugging journal monorepo",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspaces --if-present",
+    "dev:client": "npm run dev --workspace client",
+    "dev:server": "npm run dev --workspace server",
+    "build": "npm run build --workspace client",
+    "lint": "npm run lint --workspaces --if-present",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "validate": "node -e \"JSON.parse(require('fs').readFileSync('package.json')); JSON.parse(require('fs').readFileSync('client/package.json')); JSON.parse(require('fs').readFileSync('server/package.json')); console.log('Package manifests are valid JSON')\""
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.35.0",
+    "eslint": "^9.35.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.14",
+    "globals": "^16.4.0",
+    "prettier": "^3.6.2"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
+}
