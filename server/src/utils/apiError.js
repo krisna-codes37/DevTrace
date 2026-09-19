@@ -13,3 +13,15 @@ export class ConfigurationError extends ApiError {
     super(503, 'CONFIGURATION_ERROR', message, details);
   }
 }
+
+export class ConflictError extends ApiError {
+  constructor(message, details = []) {
+    super(409, 'CONFLICT', message, details);
+  }
+}
+
+export class UnauthorizedError extends ApiError {
+  constructor(code, message, details = []) {
+    super(401, code, message, details);
+  }
+}

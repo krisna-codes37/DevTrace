@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import { env } from './config/env.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { notFoundHandler } from './middleware/notFound.js';
+import authRouter from './routes/auth.routes.js';
 import healthRouter from './routes/health.routes.js';
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(cors({ origin: env.CLIENT_ORIGIN }));
 app.use(express.json());
 
 app.use('/api/health', healthRouter);
+app.use('/api/auth', authRouter);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

@@ -7,6 +7,8 @@ const environmentSchema = z.object({
   CLIENT_ORIGIN: z.string().url().default('http://localhost:5173'),
   MONGODB_URI: z.string().trim().min(1).optional(),
   MONGODB_SERVER_SELECTION_TIMEOUT_MS: z.coerce.number().int().positive().default(5000),
+  JWT_SECRET: z.string().trim().min(32).optional(),
+  JWT_EXPIRES_IN: z.string().trim().min(1).default('15m'),
 });
 
 const parsedEnvironment = environmentSchema.safeParse(process.env);
