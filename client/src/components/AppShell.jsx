@@ -1,5 +1,5 @@
-import { Activity, LogOut } from 'lucide-react';
-import { useState } from 'react';
+import { Activity, BookOpen, LogOut, Moon, Sun } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../context/useAuth.js';
@@ -9,6 +9,12 @@ export default function AppShell() {
   const location = useLocation();
   const navigate = useNavigate();
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
+  const [theme, setTheme] = useState(() => window.localStorage.getItem('devtrace.theme') ?? 'dark');
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem('devtrace.theme', theme);
+  }, [theme]);
 
   async function handleLogout() {
     await logout();
@@ -31,9 +37,21 @@ export default function AppShell() {
           <NavLink className={({ isActive }) => (isActive ? 'active' : '')} to="/sessions">
             Sessions
           </NavLink>
+          <NavLink className={({ isActive }) => (isActive ? 'active' : '')} to="/guide">
+            <BookOpen size={15} aria-hidden="true" /> Guide
+          </NavLink>
         </nav>
         <div className="user-controls">
           <span className="user-chip">{user?.name}</span>
+          <button
+            className="icon-button"
+            type="button"
+            onClick={() => setTheme((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark'))}
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+          >
+            {theme === 'dark' ? <Sun size={17} aria-hidden="true" /> : <Moon size={17} aria-hidden="true" />}
+            <span className="sr-only">Switch to {theme === 'dark' ? 'light' : 'dark'} theme</span>
+          </button>
           <button
             className="icon-button"
             type="button"
@@ -49,6 +67,7 @@ export default function AppShell() {
         <p className="success-message product-message">{location.state.message}</p>
       )}
       <Outlet />
+      <footer className="product-footer">Developed by Krishna Mandal</footer>
       {showLogoutDialog && (
         <div className="dialog-backdrop" role="presentation">
           <div

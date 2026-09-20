@@ -16,6 +16,67 @@
   --danger: #fb7185;
 }
 
+html[data-theme='light'] {
+  color: #202536;
+  background: #f5f7fc;
+  --bg: #f5f7fc;
+  --panel: rgba(255, 255, 255, 0.92);
+  --panel-solid: #ffffff;
+  --line: #d9deeb;
+  --muted: #596276;
+  --soft: #333b50;
+  --accent: #6d4bd1;
+  --accent-strong: #6941c6;
+}
+
+html[data-theme='light'] .product-shell,
+html[data-theme='light'] .auth-page {
+  background: radial-gradient(circle at 80% 0, rgba(109, 75, 209, 0.12), transparent 30rem), var(--bg);
+}
+
+html[data-theme='light'] .auth-card,
+html[data-theme='light'] .stat-card,
+html[data-theme='light'] .dashboard-panel,
+html[data-theme='light'] .session-form,
+html[data-theme='light'] .detail-block,
+html[data-theme='light'] .detail-facts,
+html[data-theme='light'] .journey-timeline,
+html[data-theme='light'] .hypothesis-card,
+html[data-theme='light'] .hypothesis-form,
+html[data-theme='light'] .confirm-dialog,
+html[data-theme='light'] .guide-section,
+html[data-theme='light'] .guide-terms article {
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 10px 30px rgba(43, 52, 79, 0.06);
+}
+
+html[data-theme='light'] .input-wrap,
+html[data-theme='light'] .search-box,
+html[data-theme='light'] .session-toolbar select,
+html[data-theme='light'] .session-filters select,
+html[data-theme='light'] .session-filters input,
+html[data-theme='light'] .form-field > input,
+html[data-theme='light'] .form-field > textarea,
+html[data-theme='light'] .form-field > select,
+html[data-theme='light'] .tag-editor,
+html[data-theme='light'] .hypothesis-form textarea,
+html[data-theme='light'] .hypothesis-form select,
+html[data-theme='light'] .experiment-form,
+html[data-theme='light'] .experiment-form textarea {
+  background: #f8f9fd;
+  color: #202536;
+}
+
+html[data-theme='light'] .page-title,
+html[data-theme='light'] .auth-heading h1,
+html[data-theme='light'] .dashboard-panel h2,
+html[data-theme='light'] .session-row-title,
+html[data-theme='light'] .guide-section h2,
+html[data-theme='light'] .guide-section h3,
+html[data-theme='light'] .guide-terms h3 {
+  color: #202536;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -320,9 +381,12 @@ a {
 }
 
 .product-nav a {
+  align-items: center;
   border-radius: 0.45rem;
   color: var(--muted);
+  display: inline-flex;
   font-size: 0.8rem;
+  gap: 0.35rem;
   padding: 0.45rem 0.7rem;
   transition:
     background 160ms ease,
@@ -344,6 +408,113 @@ a {
 .user-chip {
   color: var(--muted);
   font-size: 0.82rem;
+}
+
+.product-footer {
+  border-top: 1px solid rgba(40, 45, 61, 0.75);
+  color: var(--muted);
+  font-size: 0.75rem;
+  margin: 1rem clamp(1.25rem, 5vw, 4rem) 0;
+  padding: 1.5rem 0 2rem;
+  text-align: center;
+}
+
+.guide-page {
+  max-width: 68rem;
+}
+
+.guide-hero {
+  max-width: 48rem;
+}
+
+.guide-hero .eyebrow {
+  align-items: center;
+  display: flex;
+  gap: 0.35rem;
+}
+
+.guide-hero .primary-button {
+  margin-top: 1.5rem;
+}
+
+.guide-section {
+  background: rgba(18, 21, 31, 0.55);
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  margin-top: 2rem;
+  padding: clamp(1.25rem, 4vw, 2rem);
+}
+
+.guide-section h2 {
+  color: #f6f7fb;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.45rem;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+.guide-steps {
+  counter-reset: guide-step;
+  display: grid;
+  gap: 0.85rem;
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+}
+
+.guide-steps li {
+  align-items: flex-start;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 1rem;
+  padding-top: 0.85rem;
+}
+
+.guide-steps li > span {
+  align-items: center;
+  background: rgba(167, 139, 250, 0.14);
+  border-radius: 0.5rem;
+  color: var(--accent);
+  display: inline-flex;
+  flex: 0 0 2rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  height: 2rem;
+  justify-content: center;
+}
+
+.guide-steps h3,
+.guide-terms h3 {
+  color: #f6f7fb;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.guide-steps p,
+.guide-terms p {
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0.35rem 0 0;
+}
+
+.guide-terms {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 1.5rem;
+}
+
+.guide-terms article {
+  background: rgba(13, 16, 24, 0.62);
+  border: 1px solid var(--line);
+  border-radius: 0.7rem;
+  padding: 1.1rem;
+}
+
+.guide-terms article > svg {
+  color: var(--accent);
+  margin-bottom: 1rem;
 }
 
 .icon-button {

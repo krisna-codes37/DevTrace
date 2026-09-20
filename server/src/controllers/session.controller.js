@@ -24,7 +24,7 @@ function ownedSessionFilter(userId, sessionId) {
 }
 
 export async function listSessions(request, response) {
-  const { page, limit, search, status, technology, severity, sort } = request.query;
+  const { page, limit, search, status, technology, severity, sort } = request.validatedQuery;
   const filter = { userId: request.user._id };
 
   if (search) {

@@ -10,6 +10,7 @@ import DashboardPage from './pages/DashboardPage.jsx';
 import SessionDetailsPage from './pages/SessionDetailsPage.jsx';
 import SessionFormPage from './pages/SessionFormPage.jsx';
 import SessionsPage from './pages/SessionsPage.jsx';
+import GuidePage from './pages/GuidePage.jsx';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route element={<AppShell />}>
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/sessions" element={<SessionsPage />} />
+            <Route path="/guide" element={<GuidePage />} />
             <Route path="/sessions/new" element={<SessionFormPage mode="create" />} />
             <Route path="/sessions/:id" element={<SessionDetailsPage />} />
             <Route path="/sessions/:id/edit" element={<SessionFormPage mode="edit" />} />
