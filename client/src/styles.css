@@ -419,6 +419,42 @@ a {
   text-align: center;
 }
 
+.guide-footer {
+  margin: 2rem 0 0;
+}
+
+.ai-analysis {
+  background: rgba(167, 139, 250, 0.07);
+  border: 1px solid rgba(167, 139, 250, 0.28);
+  border-radius: 0.75rem;
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+}
+
+.ai-analysis .eyebrow {
+  align-items: center;
+  display: flex;
+  gap: 0.35rem;
+}
+
+.ai-analysis h2 {
+  color: #f6f7fb;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.ai-analysis > p:last-child {
+  color: var(--soft);
+  line-height: 1.65;
+  margin: 1rem 0 0;
+  white-space: pre-wrap;
+}
+
+html[data-theme='light'] .ai-analysis h2 {
+  color: #202536;
+}
+
 .guide-page {
   max-width: 68rem;
 }

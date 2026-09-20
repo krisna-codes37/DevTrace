@@ -1,7 +1,9 @@
-import { ArrowLeft, CalendarDays, Pencil, Trash2 } from 'lucide-react';
+import { ArrowLeft, CalendarDays, Pencil, Sparkles, Trash2 } from 'lucide-react';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
 
+import { analyzeSession } from '../api/ai.js';
 import { getApiErrorMessage } from '../api/client.js';
 import HypothesisSection from '../components/HypothesisSection.jsx';
 import Timeline from '../components/Timeline.jsx';
@@ -22,8 +24,13 @@ export default function SessionDetailsPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [analysis, setAnalysis] = useState('');
   const { data: session, isLoading, error } = useSession(id);
   const deleteMutation = useDeleteSession();
+  const analysisMutation = useMutation({
+    mutationFn: () => analyzeSession(id),
+    onSuccess: setAnalysis,
+  });
   const journey = useJourneyTimeline(session);
 
   if (isLoading)
@@ -52,6 +59,11 @@ export default function SessionDetailsPage() {
     } catch {
       // The mutation error is rendered in the confirmation dialog.
     }
+  }
+
+  function handleAnalysis() {
+    setAnalysis('');
+    analysisMutation.mutate();
   }
 
   return (
@@ -86,6 +98,15 @@ export default function SessionDetailsPage() {
           </p>
         </div>
         <div className="detail-actions">
+          <button
+            className="secondary-button"
+            type="button"
+            disabled={analysisMutation.isPending}
+            onClick={handleAnalysis}
+          >
+            <Sparkles size={16} />
+            {analysisMutation.isPending ? 'Analyzing...' : 'Analyze with AI'}
+          </button>
           <Link className="secondary-button" to={`/sessions/${id}/edit`}>
             <Pencil size={16} /> Edit
           </Link>
@@ -120,6 +141,19 @@ export default function SessionDetailsPage() {
         <DetailBlock title="Lesson learned" value={session.lessonLearned} />
       </div>
       <Timeline events={journey.events} isLoading={journey.isLoading} />
+      {(analysis || analysisMutation.error) && (
+        <section className="ai-analysis" aria-live="polite">
+          <p className="eyebrow"><Sparkles size={13} /> Optional AI analysis</p>
+          <h2>Investigation insights</h2>
+          {analysisMutation.error ? (
+            <p className="form-error form-error-summary">
+              {getApiErrorMessage(analysisMutation.error)}
+            </p>
+          ) : (
+            <p>{analysis}</p>
+          )}
+        </section>
+      )}
       <HypothesisSection sessionId={id} />
       {showDeleteDialog && (
         <div className="dialog-backdrop" role="presentation">

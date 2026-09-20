@@ -9,6 +9,8 @@ const environmentSchema = z.object({
   MONGODB_SERVER_SELECTION_TIMEOUT_MS: z.coerce.number().int().positive().default(5000),
   JWT_SECRET: z.string().trim().min(32).optional(),
   JWT_EXPIRES_IN: z.string().trim().min(1).default('15m'),
+  AI_API_KEY: z.string().trim().min(1).optional(),
+  AI_MODEL: z.string().trim().min(1).default('gpt-4o-mini'),
 });
 
 const parsedEnvironment = environmentSchema.safeParse(process.env);

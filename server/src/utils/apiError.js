@@ -31,3 +31,9 @@ export class NotFoundError extends ApiError {
     super(404, 'NOT_FOUND', message, details);
   }
 }
+
+export class AiUnavailableError extends ApiError {
+  constructor(message = 'AI analysis is currently unavailable. Please try again later.', details = []) {
+    super(503, 'AI_UNAVAILABLE', message, details);
+  }
+}

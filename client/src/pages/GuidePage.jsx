@@ -43,6 +43,7 @@ export default function GuidePage() {
           <article><FlaskConical size={19} /><h3>Experiment</h3><p>A test used to check a hypothesis. Record what you expected, what actually happened, and the evidence.</p></article>
         </div>
       </section>
+      <footer className="product-footer guide-footer">Developed by Krishna Mandal</footer>
     </section>
   );
 }

@@ -67,7 +67,6 @@ export default function AppShell() {
         <p className="success-message product-message">{location.state.message}</p>
       )}
       <Outlet />
-      <footer className="product-footer">Developed by Krishna Mandal</footer>
       {showLogoutDialog && (
         <div className="dialog-backdrop" role="presentation">
           <div
