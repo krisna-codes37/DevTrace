@@ -1,7 +1,7 @@
 import DebugSession from '../models/DebugSession.js';
 import Experiment from '../models/Experiment.js';
 import Hypothesis from '../models/Hypothesis.js';
-import { analyzeDebugSession } from '../services/ai/openai.js';
+import { analyzeDebugSession } from '../services/ai/gemini.js';
 import { NotFoundError } from '../utils/apiError.js';
 
 function buildInvestigation(session, hypotheses, experiments) {

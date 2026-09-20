@@ -10,7 +10,7 @@ const environmentSchema = z.object({
   JWT_SECRET: z.string().trim().min(32).optional(),
   JWT_EXPIRES_IN: z.string().trim().min(1).default('15m'),
   AI_API_KEY: z.string().trim().min(1).optional(),
-  AI_MODEL: z.string().trim().min(1).default('gpt-4o-mini'),
+  AI_MODEL: z.string().trim().min(1).default('gemini-3.5-flash-lite'),
 });
 
 const parsedEnvironment = environmentSchema.safeParse(process.env);
