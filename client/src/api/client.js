@@ -32,7 +32,15 @@ apiClient.interceptors.request.use((config) => {
 });
 
 export function getApiErrorMessage(error) {
-  return error.response?.data?.error?.message ?? 'Something went wrong. Please try again.';
+  if (error.response?.data?.error?.message) {
+    return error.response.data.error.message;
+  }
+
+  if (!error.response) {
+    return 'Unable to reach the DevTrace API. Start the backend and check VITE_API_URL.';
+  }
+
+  return 'Something went wrong. Please try again.';
 }
 
 export default apiClient;

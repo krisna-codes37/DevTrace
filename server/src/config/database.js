@@ -20,5 +20,5 @@ export async function connectDatabase() {
     throw new ConfigurationError(
       'MongoDB connection failed. Check MONGODB_URI and confirm MongoDB is reachable.',
     );
-  }
+} 
 }
