@@ -1,4 +1,5 @@
 import { Activity, LogOut } from 'lucide-react';
+import { useState } from 'react';
 import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../context/useAuth.js';
@@ -7,6 +8,7 @@ export default function AppShell() {
   const { user, logout } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  const [showLogoutDialog, setShowLogoutDialog] = useState(false);
 
   async function handleLogout() {
     await logout();
@@ -32,7 +34,12 @@ export default function AppShell() {
         </nav>
         <div className="user-controls">
           <span className="user-chip">{user?.name}</span>
-          <button className="icon-button" type="button" onClick={handleLogout} title="Log out">
+          <button
+            className="icon-button"
+            type="button"
+            onClick={() => setShowLogoutDialog(true)}
+            title="Log out"
+          >
             <LogOut size={17} aria-hidden="true" />
             <span className="sr-only">Log out</span>
           </button>
@@ -42,6 +49,32 @@ export default function AppShell() {
         <p className="success-message product-message">{location.state.message}</p>
       )}
       <Outlet />
+      {showLogoutDialog && (
+        <div className="dialog-backdrop" role="presentation">
+          <div
+            className="confirm-dialog"
+            role="alertdialog"
+            aria-modal="true"
+            aria-labelledby="logout-title"
+          >
+            <p className="eyebrow">End session</p>
+            <h2 id="logout-title">Log out of DevTrace?</h2>
+            <p>You will need to sign in again to access your debugging journal.</p>
+            <div className="dialog-actions">
+              <button
+                className="secondary-button"
+                type="button"
+                onClick={() => setShowLogoutDialog(false)}
+              >
+                Cancel
+              </button>
+              <button className="danger-button" type="button" onClick={handleLogout}>
+                Log out
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

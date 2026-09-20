@@ -7,7 +7,11 @@ export const sessionKeys = {
 };
 
 export async function fetchSessions(params) {
-  const { data } = await apiClient.get('/sessions', { params });
+  // Empty filters are not valid values for the API's optional enum fields.
+  const populatedParams = Object.fromEntries(
+    Object.entries(params).filter(([, value]) => value !== '' && value != null),
+  );
+  const { data } = await apiClient.get('/sessions', { params: populatedParams });
   return data;
 }
 
